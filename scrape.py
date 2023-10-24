@@ -1,6 +1,8 @@
 """
 スクレイピングをするモジュール
 """
+from concurrent.futures import ThreadPoolExecutor
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -41,17 +43,19 @@ def extract_max_page_number():
     max_page_element = element.select_one("li:nth-child(11) > a")
     max_page = max_page_element.string
     return int(max_page)
+    return int(max_page)
 
 
 def define_url_list(page_number):
     for page in range(1, page_number + 1):
         url_list.append(target_url.format(page))
 
-        
+
 def request_multiple_html(page_number):
-    for page in range(1, page_number + 1):
-        url_html.append(request_html(target_url.format(page)))
-    print(url_html)
+    define_url_list(page_number)
+    with ThreadPoolExecutor() as executor:
+        url_html = list(executor.map(request_html, url_list))
+
 
 
 request_multiple_html(10)
