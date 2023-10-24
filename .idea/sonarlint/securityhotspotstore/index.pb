@@ -1,0 +1,12 @@
+
+7
+main.py,f\1\f1bdda93d9a278e358509d498e17d97764c1fb29
+;
+poetry.lock,0\0\0068a1506b061a8948c37d78b0dd5697211558d3
+>
+pyproject.toml,5\d\5d07e7d72637aa0d59c89d381fe6dc4cf46e2491
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+9
+	scrape.py,a\6\a63b5276f5108ef48012e00acd1f8ebe9f45bf1a
