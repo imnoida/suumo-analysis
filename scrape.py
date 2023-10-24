@@ -47,7 +47,7 @@ def define_url_list(page_number):
     for page in range(1, page_number + 1):
         url_list.append(target_url.format(page))
 
-
+        
 def request_multiple_html(page_number):
     for page in range(1, page_number + 1):
         url_html.append(request_html(target_url.format(page)))
