@@ -16,6 +16,7 @@ target_url = (
 )
 
 url_list = []
+url_html = []
 
 
 def request_html(url):
@@ -46,6 +47,11 @@ def define_url_list(page_number):
     for page in range(1, page_number + 1):
         url_list.append(target_url.format(page))
 
+        
+def request_multiple_html(page_number):
+    for page in range(1, page_number + 1):
+        url_html.append(request_html(target_url.format(page)))
+    print(url_html)
 
 
-print(extract_max_page_number(target_url.format(1)))
+request_multiple_html(10)
