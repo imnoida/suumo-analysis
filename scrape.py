@@ -1,6 +1,8 @@
 """
 スクレイピングをするモジュール
 """
+from concurrent.futures import ThreadPoolExecutor
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -15,26 +17,43 @@ target_url = (
     "https://suumo.jp/jj/chintai/ichiran/FR301FC001/?ar=050&bs=040&ta=23&pc=50&page={}"
 )
 
+url_list = []
+url_html = []
+
 
 def request_html(url):
+    return requests.get(url)
+
+
+def parse_html(url):
     """
     :param url: 検索したいURL
     :return: HTML解析用のオブジェクト
     """
-    response = requests.get(url)
+    response = request_html(url)
     soup = BeautifulSoup(response.text, "lxml")
     return soup
 
 
-def extract_max_page_number(url):
+def extract_max_page_number():
     """
-    :param url: 検索したいURL
     :return: 最大ページ数
     """
-    element = request_html(url)
+    element = parse_html(target_url.format(1))
     max_page_element = element.select_one("li:nth-child(11) > a")
     max_page = max_page_element.string
-    return max_page
+    return int(max_page)
 
 
-print(extract_max_page_number(target_url.format(1)))
+def define_url_list(page_number):
+    for page in range(1, page_number + 1):
+        url_list.append(target_url.format(page))
+
+
+def request_multiple_html(page_number):
+    define_url_list(page_number)
+    with ThreadPoolExecutor() as executor:
+        url_html = list(executor.map(request_html, url_list))
+
+
+request_multiple_html(10)
