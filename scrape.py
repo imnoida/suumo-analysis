@@ -16,7 +16,7 @@ target_url = (
 def request_html(url):
     """
     :param url: 検索したいURL
-    :return:
+    :return: HTML解析用のオブジェクト
     """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
