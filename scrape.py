@@ -12,9 +12,7 @@ def request_html(url):
 
 def get_max_page(url):
     element = request_html(url)
-    max_page_element = element.select_one(
-        "div.pagination_set > div.pagination.pagination_set-nav > ol > li:nth-child(11) > a"
-    )
+    max_page_element = element.select_one("li:nth-child(11) > a")
     max_page = max_page_element.string
     return max_page
 
