@@ -2,14 +2,14 @@ from bs4 import BeautifulSoup
 import requests
 
 """
-ar:   area 北海道=10 東北=20 関東=30 甲信越・北陸=40 東海=50 関西=60 四国=70 中国=80 九州・沖縄=90
-bs:   マンション新築=10 マンション中古=11 一戸建て新築=20 一戸建て中古 土地=30 賃貸=40
+ar:   area 北海道=010 東北=020 関東=030 甲信越・北陸=040 東海=050 関西=060 四国=070 中国=080 九州・沖縄=090
+bs:   マンション新築=010 マンション中古=011 一戸建て新築=020 一戸建て中古 土地=030 賃貸=040
 ta:   都道府県ID
 pc:   page count
 page: page number
 """
 target_url = (
-    "https://suumo.jp/jj/chintai/ichiran/FR301FC001/?ar=50&bs=40&ta=23&pc=50&page={}"
+    "https://suumo.jp/jj/chintai/ichiran/FR301FC001/?ar=050&bs=040&ta=23&pc=50&page={}"
 )
 
 
