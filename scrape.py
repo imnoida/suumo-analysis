@@ -26,7 +26,7 @@ def request_html(url):
     return soup
 
 
-def get_max_page(url):
+def extract_max_page_number(url):
     """
     :param url: 検索したいURL
     :return: 最大ページ数
@@ -37,4 +37,4 @@ def get_max_page(url):
     return max_page
 
 
-print(get_max_page(target_url.format(1)))
+print(extract_max_page_number(target_url.format(1)))
