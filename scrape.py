@@ -22,7 +22,7 @@ def request_html(url):
     :return: HTML解析用のオブジェクト
     """
     response = requests.get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(response.text, "lxml")
     return soup
 
 
