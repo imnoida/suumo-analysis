@@ -10,11 +10,13 @@ def request_html(url):
     return soup
 
 
-def get_max_page():
-    element = request_html(target_url.format(1))
-    max_page = element.select(
-        "#js-leftColumnForm > div.pagination_set > div.pagination.pagination_set-nav > ol > li:nth-of-type(13) > a")
+def get_max_page(url):
+    element = request_html(url)
+    max_page_element = element.select_one(
+        "div.pagination_set > div.pagination.pagination_set-nav > ol > li:nth-child(11) > a"
+    )
+    max_page = max_page_element.string
     return max_page
 
 
-print(get_max_page())
+print(get_max_page(target_url.format(1)))
