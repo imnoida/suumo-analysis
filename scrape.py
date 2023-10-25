@@ -1,8 +1,8 @@
 """スクレイピングをするモジュール."""
 from concurrent.futures import ThreadPoolExecutor
 
-import requests
 from bs4 import BeautifulSoup
+import requests
 
 site_url = (
     "https://suumo.jp/jj/chintai/ichiran/FR301FC001/"
@@ -26,7 +26,8 @@ def parse_html(url: str) -> BeautifulSoup:
     :return: HTML解析用のオブジェクト
     """
     response = request_html(url)
-    return BeautifulSoup(response.text, "lxml")
+    soup = BeautifulSoup(response.text, "lxml")
+    return soup
 
 
 def extract_max_page_number() -> int:
