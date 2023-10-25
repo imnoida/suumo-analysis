@@ -1,8 +1,8 @@
 """スクレイピングをするモジュール."""
 from concurrent.futures import ThreadPoolExecutor
 
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
 site_url = (
     "https://suumo.jp/jj/chintai/ichiran/FR301FC001/"
@@ -26,8 +26,7 @@ def parse_html(url: str) -> BeautifulSoup:
     :return: HTML解析用のオブジェクト
     """
     response = request_html(url)
-    soup = BeautifulSoup(response.text, "lxml")
-    return soup
+    return BeautifulSoup(response.text, "lxml")
 
 
 def extract_max_page_number() -> int:
@@ -48,9 +47,6 @@ def define_url_list(page_number: int, target_url: str) -> list:
     :param target_url: 対象のURL
     :return: URLのリスト
     """
-    if not isinstance(page_number, int) or page_number <= 0:
-        msg = "page_numberは正の整数でなければならない."
-        raise ValueError(msg)
     return [target_url.format(page) for page in range(1, page_number + 1)]
 
 
@@ -66,4 +62,4 @@ def request_multiple_html(page_number: int, target_url: str) -> list:
         return list(executor.map(request_html, url_list))
 
 
-request_multiple_html(10, site_url)
+req = request_multiple_html(10, site_url)
