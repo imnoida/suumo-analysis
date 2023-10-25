@@ -16,6 +16,9 @@ matplotlib = "^3.8.0"
 flake8 = "^6.1.0"
 black = "^23.10.1"
 
+[tool.ruff]
+select = ["ALL"]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
