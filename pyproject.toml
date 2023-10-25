@@ -11,10 +11,14 @@ pandas = "^2.1.1"
 requests = "^2.31.0"
 beautifulsoup4 = "^4.12.2"
 matplotlib = "^3.8.0"
+ruff = "^0.1.2"
 
 [tool.poetry.group.dev.dependencies]
-flake8 = "^6.1.0"
 black = "^23.10.1"
+
+[tool.ruff]
+#select = ["F", "E", "W", "I", "B", "N", "PL", "PD", "NPY", "RUF", "UP", "D"]
+select = ["ALL"]
 
 [build-system]
 requires = ["poetry-core"]
