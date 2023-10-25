@@ -2,9 +2,15 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
+from typing import TYPE_CHECKING
 
 import requests
 from bs4 import BeautifulSoup, Tag
+
+from logger import set_logger
+
+if TYPE_CHECKING:
+    from logging import Logger
 
 site_url: str = (
     "https://suumo.jp/jj/chintai/ichiran/FR301FC001/"
@@ -74,3 +80,5 @@ def request_multiple_html(
 
 
 req: list[requests.models.Response] = request_multiple_html(10, site_url)
+log: Logger = set_logger(module_name="scrape")
+log.debug(req)
