@@ -39,7 +39,7 @@ def create_file_handler(log_format: str, log_filename: str) -> FileHandler:
     :param log_filename: ファイル名
     :return: ファイルハンドラ.
     """
-    file_handler = FileHandler(log_filename)
+    file_handler = FileHandler(log_filename, encoding="utf-8")
     formatter = Formatter(log_format)
     file_handler.setFormatter(formatter)
     file_handler.setLevel(NOTSET)
