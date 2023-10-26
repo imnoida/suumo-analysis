@@ -129,6 +129,13 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 .idea/**/azureSettings.xml
 
+# original plugin
+.idea/ruff.xml
+.idea/GitLink.xml
+.idea/git_toolbox_prj.xml
+.idea/discord.xml
+.idea/markdown.xml
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
