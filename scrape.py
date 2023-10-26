@@ -121,11 +121,11 @@ def extract_additional_data(
     return additional_data
 
 
-def extract_base_data(item: BeautifulSoup, stations: list[Tag]) -> list[dict[str, str]]:
+def extract_base_data(item: BeautifulSoup, station: Tag) -> list[dict[str, str]]:
     """基本のデータを抽出する.
 
     :param item: HTML
-    :param stations: 駅リスト
+    :param station: アクセス
     :return:
     """
     base_data: dict[str, str] = {
@@ -138,7 +138,7 @@ def extract_base_data(item: BeautifulSoup, stations: list[Tag]) -> list[dict[str
         "アドレス": item.find("li", {"class": "cassetteitem_detail-col1"})
         .getText()
         .strip(),
-        "アクセス": stations[0].getText().strip(),
+        "アクセス": station.getText().strip(),
         "築年数": item.find("li", {"class": "cassetteitem_detail-col3"})
         .findAll("div")[0]
         .getText()
@@ -166,8 +166,9 @@ def extract_elements() -> list[dict[str, str]]:
                 "div",
                 {"class": "cassetteitem_detail-text"},
             )
-            additional_data: list[dict[str, str]] = extract_base_data(item, stations)
-            all_data.extend(additional_data)
+            for station in stations:
+                additional_data: list[dict[str, str]] = extract_base_data(item, station)
+                all_data.extend(additional_data)
     log.debug("完了")
     return all_data
 
