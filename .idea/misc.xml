@@ -2,7 +2,6 @@
 <project version="4">
   <component name="Black">
     <option name="enabledOnReformat" value="true" />
-    <option name="sdkUUID" value="7bc9b426-7ec1-4ae7-8dff-553b6704f2a0" />
     <option name="sdkName" value="Poetry (suumo-analysis)" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Poetry (suumo-analysis)" project-jdk-type="Python SDK" />

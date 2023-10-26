@@ -79,7 +79,8 @@ def parse_multiple_html(page_number: int) -> list[BeautifulSoup]:
     target_url_list: list[str] = generate_url_list(page_number)
     with ThreadPoolExecutor() as executor:
         progress: tqdm[BeautifulSoup] = tqdm(
-            executor.map(parse_html, target_url_list), total=len(target_url_list),
+            executor.map(parse_html, target_url_list),
+            total=len(target_url_list),
         )
         progress.set_description("parse_multiple_html")
         result: list[BeautifulSoup] = list(progress)
@@ -87,7 +88,8 @@ def parse_multiple_html(page_number: int) -> list[BeautifulSoup]:
 
 
 def extract_additional_data(
-        item: BeautifulSoup, base_data: dict[str, str],
+    item: BeautifulSoup,
+    base_data: dict[str, str],
 ) -> list[dict[str, str]]:
     """追加のデータを抽出する.
 
@@ -96,7 +98,8 @@ def extract_additional_data(
     :return:
     """
     tbodys: list[BeautifulSoup] = item.find(
-        "table", {"class": "cassetteitem_other"},
+        "table",
+        {"class": "cassetteitem_other"},
     ).findAll("tbody")
     additional_data: list[dict[str, str]] = []
     for tbody in tbodys:
@@ -160,7 +163,8 @@ def extract_elements() -> list[dict[str, str]]:
         items: list[BeautifulSoup] = html.findAll("div", {"class": "cassetteitem"})
         for item in items:
             stations: list[Tag] = item.findAll(
-                "div", {"class": "cassetteitem_detail-text"},
+                "div",
+                {"class": "cassetteitem_detail-text"},
             )
             additional_data: list[dict[str, str]] = extract_base_data(item, stations)
             all_data.extend(additional_data)
