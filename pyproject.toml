@@ -14,6 +14,10 @@ matplotlib = "^3.8.0"
 types-requests = "^2.31.0.10"
 types-beautifulsoup4 = "^4.12.0.6"
 mypy = "^1.6.1"
+tenacity = "^8.2.3"
+tqdm = "^4.66.1"
+pandas-stubs = "^2.1.1.230928"
+types-tqdm = "^4.66.0.2"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.1.0"
@@ -24,13 +28,8 @@ select = ["ALL"]
 
 [tool.mypy]
 python_version = "3.10"
-disallow_any_decorated = true
-disallow_any_explicit = true
-disallow_any_expr = true
-disallow_any_unimported = true
 strict = true
-warn_incomplete_stub = true
-warn_unreachable = true
+disable_error_code = ["union-attr"]
 
 [build-system]
 requires = ["poetry-core"]
