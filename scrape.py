@@ -156,19 +156,14 @@ def extract_elements() -> list[dict[str, str]]:
 
     :return: 要素
     """
-    all_data: list[dict[str, str]] = []
     page_number: int = extract_max_page_number()
-    list_html: list[BeautifulSoup] = parse_multiple_html(page_number)
-    for html in list_html:
-        items: list[BeautifulSoup] = html.findAll("div", {"class": "cassetteitem"})
-        for item in items:
-            stations: list[Tag] = item.findAll(
-                "div",
-                {"class": "cassetteitem_detail-text"},
-            )
-            for station in stations:
-                additional_data: list[dict[str, str]] = extract_base_data(item, station)
-                all_data.extend(additional_data)
+    all_data: list[dict[str, str]] = [
+        data
+        for html in parse_multiple_html(page_number)
+        for item in html.findAll("div", {"class": "cassetteitem"})
+        for station in item.findAll("div", {"class": "cassetteitem_detail-text"})
+        for data in extract_base_data(item, station)
+    ]
     log.debug("完了")
     return all_data
 
