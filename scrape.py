@@ -23,7 +23,7 @@ site_url: str = (
 )
 
 
-@retry(wait=wait_exponential(multiplier=1, min=1, max=60))
+@retry(wait=wait_exponential(min=1, max=60))
 def request_html(url: str) -> requests.models.Response:
     """指定されたURLのHTMLを取得する.
 
