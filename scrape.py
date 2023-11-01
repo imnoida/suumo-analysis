@@ -170,7 +170,7 @@ def extract_elements() -> list[dict[str, str]]:
 
 def save_to_csv() -> None:
     """csvにデータを保存する."""
-    dataframe: pd.DataFrame = pd.DataFrame(extract_elements())
+    df: pd.DataFrame = pd.DataFrame(extract_elements())
     Path("data").mkdir(parents=True, exist_ok=True)
-    dataframe.to_csv("data/scrape.csv")
+    df.to_csv("data/scrape.csv")
     log.debug("スクレイピング完了")
