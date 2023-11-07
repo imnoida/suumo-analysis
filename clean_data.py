@@ -24,5 +24,6 @@ df = df.dropna(subset=["アクセス"])
 df["沿線"] = df["アクセス"].apply(lambda x: x.split("/")[0])
 df = df.query("沿線.str.contains('線') & ~沿線.str.contains('バス')")
 df["駅"] = df["アクセス"].apply(lambda x: x.split(" ")[0].split("/")[1])
+df = df.query("アクセス.str.contains('歩') & ~アクセス.str.contains('バス')")
 
 df.plot()
