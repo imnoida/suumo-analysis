@@ -20,6 +20,13 @@ def extract_city(value: str) -> str:
     return n[0]
 
 
+def extract_ward(value: str) -> str:
+    n = re.findall(r"愛知県名古屋市(.*区)", value)
+    if len(n) == 0:
+        return "NaN"
+    return n[0]
+
+
 df["家賃"] = df["家賃"].apply(extract_number)
 df["管理費"] = df["管理費"].apply(extract_number)
 df["管理費"] /= 10000
@@ -34,5 +41,7 @@ df["駅"] = df["アクセス"].apply(lambda x: x.split(" ")[0].split("/")[1])
 df = df.query("アクセス.str.contains('歩') & ~アクセス.str.contains('バス')")
 df["徒歩"] = df["アクセス"].apply(lambda x: int(re.findall(r"\d+", x.split(" ")[1])[0]))
 df["市"] = df["アドレス"].apply(extract_city)
+df["区"] = df["アドレス"].apply(extract_ward)
+
 
 df.plot()
