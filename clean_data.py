@@ -21,5 +21,6 @@ df["礼金"] = df["礼金"].apply(extract_number)
 df["面積"] = df["面積"].apply(extract_number)
 df["築年数"] = df["築年数"].apply(extract_number)
 df = df.dropna(subset=["アクセス"])
+df["沿線"] = df["アクセス"].apply(lambda x: x.split("/")[0])
 
 df.plot()
