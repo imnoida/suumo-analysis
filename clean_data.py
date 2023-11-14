@@ -9,13 +9,8 @@ def extract_number(value: str) -> float:
     return float(n[0]) if n else 0
 
 
-def extract_city(value: str) -> str:
-    n = re.search(r"愛知県(.*?郡|.*?市)", value)
-    return n.group(1) if n else "NaN"
-
-
-def extract_ward(value: str) -> str:
-    n = re.search(r"愛知県名古屋市(.*区)", value)
+def extract_location(value: str) -> str:
+    n = re.search(r"愛知県(.*?郡|名古屋市.*?区|.*?市)", value)
     return n.group(1) if n else "NaN"
 
 
@@ -41,6 +36,5 @@ def clean_data() -> DataFrame:
     df["駅"] = df["アクセス"].apply(extract_station)
     df = df[df["アクセス"].str.contains("歩") & ~df["アクセス"].str.contains("バス")]
     df["徒歩"] = df["アクセス"].apply(extract_walk_distance)
-    df["市"] = df["アドレス"].apply(extract_city)
-    df["区"] = df["アドレス"].apply(extract_ward)
+    df["地域"] = df["アドレス"].apply(extract_location)
     return df
