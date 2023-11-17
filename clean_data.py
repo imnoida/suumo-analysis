@@ -24,6 +24,8 @@ def extract_walk_distance(line: str) -> int:
 
 def clean_data() -> DataFrame:
     df: DataFrame = pd.read_csv("data/scrape.csv")
+    df["構造"] = df["構造"].apply(extract_number)
+    df["階数"] = df["階数"].apply(extract_number)
     df["家賃"] = df["家賃"].apply(extract_number)
     df["管理費"] = df["管理費"].apply(extract_number) / 10000
     df["敷金"] = df["敷金"].apply(extract_number)
