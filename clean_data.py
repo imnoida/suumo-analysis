@@ -10,7 +10,7 @@ def extract_number(value: str) -> float:
 
 
 def extract_location(value: str) -> str:
-    n = re.search(r"愛知県(.*?郡|名古屋市.*?区|.*?市)", value)
+    n = re.search(r"愛知県(.*?郡市|.*?郡|名古屋市.*?区|.*?市)", value)
     return n.group(1) if n else "NaN"
 
 
