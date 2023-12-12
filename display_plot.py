@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from pandas import DataFrame
 
+
 def average_rent_graph(cd: DataFrame) -> None:
     average_rent_per_city = cd.groupby("地域")["家賃"].mean()
     x = average_rent_per_city.index
