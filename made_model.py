@@ -33,16 +33,12 @@ y_pred_rf = rf_model.predict(X_test)
 
 # モデルの評価
 mse_rf = mean_squared_error(y_test, y_pred_rf)
-print(f"Random Forest Mean Squared Error: {mse_rf}")
+print(f"ランダムフォレストの平均二乗誤差: {mse_rf}")
 
 # 実際のデータに予測結果を結合
 cd_cleaned["予測家賃_RF"] = np.nan  # 列を追加して初期化
 
 # 予測結果を入れる列に予測値をセット
-if "予測家賃_RF" in cd_cleaned.columns:
-    cd_cleaned.loc[X_test.index, "予測家賃_RF"] = y_pred_rf
-else:
-    print("予測家賃_RF列が存在しません。")
-
+cd_cleaned.loc[X_test.index, "予測家賃_RF"] = y_pred_rf
 # 予測結果を表示
-result = cd_cleaned[["家賃", "予測家賃_RF"]].head()
+result = cd_cleaned[["家賃", "予測家賃_RF"]]
