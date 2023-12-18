@@ -8,7 +8,7 @@ import clean_data
 import clean_outlier
 
 # 説明変数と目的変数の選択
-features = ["築年数", "面積", "徒歩"]
+features = ["築年数", "構造", "階数", "面積", "徒歩"]
 target = "家賃"
 
 # データの前処理(外れ値のクリーニング)
