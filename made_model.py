@@ -1,4 +1,6 @@
 # 必要なライブラリのインポート
+from logging import Logger
+
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
@@ -6,7 +8,9 @@ from sklearn.model_selection import train_test_split
 
 import clean_data
 import clean_outlier
+from logger import set_logger
 
+log: Logger = set_logger(module_name=__name__)
 # 説明変数と目的変数の選択
 features = ["築年数", "構造", "階数", "面積", "徒歩"]
 target = "家賃"
@@ -33,7 +37,7 @@ y_pred_rf = rf_model.predict(X_test)
 
 # モデルの評価
 mse_rf = mean_squared_error(y_test, y_pred_rf)
-print(f"ランダムフォレストの平均二乗誤差: {mse_rf}")
+log.info("ランダムフォレストの平均二乗誤差: %s", mse_rf)
 
 X_all = cd_cleaned[features]
 y_pred_all = rf_model.predict(X_all)
