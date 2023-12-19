@@ -17,7 +17,8 @@ from typing import TextIO
 
 
 def create_stream_handler(
-    log_format: str, stream_log_level: int
+    log_format: str,
+    stream_log_level: int,
 ) -> StreamHandler[TextIO]:
     """ストリームハンドラを作成する.
 
