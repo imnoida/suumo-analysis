@@ -35,10 +35,12 @@ y_pred_rf = rf_model.predict(X_test)
 mse_rf = mean_squared_error(y_test, y_pred_rf)
 print(f"ランダムフォレストの平均二乗誤差: {mse_rf}")
 
+X_all = cd_cleaned[features]
+y_pred_all = rf_model.predict(X_all)
 # 実際のデータに予測結果を結合
 cd_cleaned["予測家賃_RF"] = np.nan  # 列を追加して初期化
 
 # 予測結果を入れる列に予測値をセット
-cd_cleaned.loc[X_test.index, "予測家賃_RF"] = y_pred_rf
+cd_cleaned.loc[:, "予測家賃_RF"] = y_pred_all
 # 予測結果を表示
 result = cd_cleaned[["家賃", "予測家賃_RF"]]
