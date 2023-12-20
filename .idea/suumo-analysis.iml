@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
-  <component name="PyDocumentationSettings">
-    <option name="format" value="PLAIN" />
-    <option name="myDocStringFormat" value="Plain" />
-  </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="0421413d-694d-4c99-9142-a87e68ff0a79" />
   </component>
