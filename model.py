@@ -28,7 +28,7 @@ def preprocess_data() -> DataFrame:
 
     :return: 前処理後のDataframe
     """
-    cd = clean_data.clean_data().head(50)
+    cd = clean_data.clean_data()
     return clean_outlier.clean_outlier(cd)
 
 

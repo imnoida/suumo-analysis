@@ -1,6 +1,7 @@
 import clean_data
 import clean_outlier
 import display_plot
+import model
 
 if __name__ == "__main__":
     cd = clean_data.clean_data()
@@ -8,3 +9,4 @@ if __name__ == "__main__":
     display_plot.average_rent_graph(cd)
     filtered = co
     display_plot.rent_hist(filtered)
+    model.main()
